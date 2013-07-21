@@ -41,7 +41,7 @@
 			get: function( course ) {
 				this.data.tags = course;
 				this.ajax( flickr.data ).done( function( data ){
-							return
+							console.log(data);
 						} ).fail( function(){
 							coursesearch.dom.inputcontainer.addClass('error');
 						} );
@@ -212,9 +212,7 @@
 			buildlist: function( results ) {
 				var location = [];
 				$.each( results, function( key, place ) {
-					var photos = flickr.get( place.name );
-					photos = ( typeof photos !== 'undefined' ) ? photos : '';
-					location.push( { name: place.name, address: place.formatted_address, photos: photos } );
+					location.push( { name: place.name, address: place.formatted_address } );
 				});
 				
 				locations = {locations:location};
