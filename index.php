@@ -16,11 +16,7 @@ require dirname(__FILE__) . '/app/config.php';
 switch(ENVIRONMENT)
 {
 	case 'LOCAL':
-		$form['api'] = '';
-		break;
-
 	case 'PROD':
-		$form['action'] = '';
 		break;
 }
 

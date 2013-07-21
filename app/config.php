@@ -17,7 +17,6 @@ switch(strtolower($env[1]))
 	case 'local':
 		$environment = 'LOCAL';
 		break;
-
 	case 'www':
 	default:
 		$environment = 'PROD';

@@ -8,12 +8,10 @@
 			init: function() {
 				navigator.geolocation.getCurrentPosition( this.success, this.error );
 			},
-
 			success: function( position ) {
 				geo.coords = position.coords;
 				googlemaps.call( geo.coords );
 			},
-
 			error: function( error ) {
 				googlemaps.handlenogeolocation();
 			}
@@ -46,7 +44,6 @@
 							return
 						} ).fail( function(){
 							coursesearch.dom.inputcontainer.addClass('error');
-							//console.log( 'There was an error retrieving images.' )
 						} );
 			},
 			sort: function( data ) {
@@ -99,6 +96,7 @@
 
 				// CLEAR MARKERS
 				googlemaps.clearmarkers();
+
 				googlemaps.places.textSearch( search, googlemaps.addmarkers );
 			},
 			addmarkers: function( results, status ) {
@@ -160,6 +158,11 @@
 			}
 		}
 
+		/**
+		 * Golf Course Search
+		 * Build validation and 
+		  *initial search call
+		 */
 		var coursesearch = {
 			dom: {
 				form: $('#course-search-form'),
