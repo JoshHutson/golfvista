@@ -38,22 +38,18 @@
 							cache: false
 						});
 			},
-			get: function( place ) {
+			get: function( key, place ) {
 				var dfd = $.Deferred();
 				this.data.tags = place.name;
 				this.ajax( flickr.data ).done( function( data ){
 							var photos = ( typeof data !== 'undefined' && data ) ? data.photos.photo : '';
-							console.log(photos);
-							coursesearch.locationlist.push( { name: place.name, address: place.formatted_address, photos: photos })
+							coursesearch.locationlist.push( { key: key, name: place.name, address: place.formatted_address, photos: photos });
 							dfd.resolve();
 						} ).fail( function(){
 							coursesearch.dom.inputcontainer.addClass('error');
 						} );
 
 				return dfd.promise();
-			},
-			sort: function( data ) {
-
 			}
 		}
 
@@ -79,10 +75,6 @@
 			map: null,
 			places: null,
 			geocoder: null,
-			init: function() {
-				coursesearch.events();
-				this.geocoder = new google.maps.Geocoder();
-			},
 			call: function( location ) {
 				this.map = new google.maps.Map( googlemaps.dom.container, googlemaps.mapoptions );
 				this.places = new google.maps.places.PlacesService( googlemaps.map );
@@ -103,57 +95,49 @@
 				// CLEAR MARKERS
 				googlemaps.clearmarkers();
 
-				googlemaps.places.textSearch( search, googlemaps.addmarkers );
+				googlemaps.places.textSearch( search, coursesearch.buildlist );
 			},
-			addmarkers: function( results, status ) {
-				var bounds = new google.maps.LatLngBounds();
-				if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-					coursesearch.buildlist( results );
-					$.each( results, function( key, place ) {
-						var marker,
-							html;
+			addmarkers: function( results ) {
+				$.each( results, function( key, place ) {
+					var marker,
+						html;
 
-						googlemaps.infowindow = new google.maps.InfoWindow({ 
-							map: googlemaps.map,
-							maxWidth: 450
-						});
-
-						marker = new google.maps.Marker({
-							position: place.geometry.location,
-							map: googlemaps.map,
-							title: place.name
-						});
-						html = '<div class="result"><div class="column addressInfo"><strong>' + place.name + '</a></strong><br />' + place.formatted_address + '<br /><a href="http://maps.google.com/maps?f=d&hl=en&saddr=&daddr=' + place.formatted_address + '" target="_blank" class="small" />Get Directions</a></div></div><br style="clear:both; padding:5px;" />'; 
-
-						google.maps.event.addListener( marker, 'click', function() {
-							if ( googlemaps.infowindow )
-							{
-								googlemaps.infowindow.close();
-							}
-							googlemaps.infowindow.setContent( html );
-							googlemaps.infowindow.open( googlemaps.map, this );
-						});
-						
-						$( 'div.course-location:eq(' + key + ')' ).on( 'click', function() {
-							$( 'div.course-location' ).removeClass( 'selected' );
-							$( this ).addClass( 'selected' );
-							
-							if ( googlemaps.infowindow ) 
-							{
-								googlemaps.infowindow.close();
-							}
-							googlemaps.infowindow.setContent( html );
-							googlemaps.infowindow.open( googlemaps.map, marker );
-						});
-						
-						// ADD MARKERS TO ARRAY TO CLEAR
-						googlemaps.markers.push( marker );
+					googlemaps.infowindow = new google.maps.InfoWindow({ 
+						map: googlemaps.map,
+						maxWidth: 450
 					});
-				}
-				else
-				{
-					coursesearch.error();
-				}
+
+					marker = new google.maps.Marker({
+						position: place.geometry.location,
+						map: googlemaps.map,
+						title: place.name
+					});
+					html = '<div class="result"><div class="column addressInfo"><strong>' + place.name + '</a></strong><br />' + place.formatted_address + '<br /><a href="http://maps.google.com/maps?f=d&hl=en&saddr=&daddr=' + place.formatted_address + '" target="_blank" class="small" />Get Directions</a></div></div><br style="clear:both; padding:5px;" />'; 
+
+					google.maps.event.addListener( marker, 'click', function() {
+						if ( googlemaps.infowindow )
+						{
+							googlemaps.infowindow.close();
+						}
+						googlemaps.infowindow.setContent( html );
+						googlemaps.infowindow.open( googlemaps.map, this );
+					});
+					
+					$( 'div.course-location:eq(' + key + ')' ).on( 'click', function() {
+						$( 'div.course-location' ).removeClass( 'selected' );
+						$( this ).addClass( 'selected' );
+						
+						if ( googlemaps.infowindow ) 
+						{
+							googlemaps.infowindow.close();
+						}
+						googlemaps.infowindow.setContent( html );
+						googlemaps.infowindow.open( googlemaps.map, marker );
+					});
+					
+					// ADD MARKERS TO ARRAY TO CLEAR
+					googlemaps.markers.push( marker );
+				});
 			},
 			handlenogeolocation: function() {
 			},
@@ -179,6 +163,10 @@
 				locationcontainer: $('.course-list-container')
 			},
 			locationlist: [],
+			init: function() {
+				this.events();
+				googlemaps.geocoder = new google.maps.Geocoder();
+			},
 			events: function() {
 				this.dom.form.on('submit', coursesearch.validate);
 				this.dom.button.on('click', coursesearch.validate);
@@ -216,25 +204,36 @@
 					}
 				});
 			},
-			buildlist: function( results ) {
-				var def = [];
-				coursesearch.locationlist = [];
-				$.each( results, function( key, place ) {
-					def.push( flickr.get( place ) );
-				});
-				
-				$.when.apply( $, def ).done( function() {
-					console.log(coursesearch.locationlist);
-					locations = { locations: coursesearch.locationlist };
+			buildlist: function( results, status ) {
+				if ( status == google.maps.places.PlacesServiceStatus.OK ) {
+					var def = [];
+					coursesearch.locationlist = [];
+					$.each( results, function( key, place ) {
+						def.push( flickr.get( key, place ) );
+					});
+					
+					$.when.apply( $, def ).done( function() {
+						coursesearch.locationlist = coursesearch.locationlist.sort( function ( a, b ) {
+							return a.key - b.key;
+						});
 
-					/**
-					 * Handlebars templating
-					 * Build list of locations
-					 */
-					 coursesearch.limithelper();
-					var	locationtemplate = Handlebars.compile( coursesearch.dom.locationsrc.html() );
-					coursesearch.dom.locationcontainer.html( locationtemplate( locations ) );
-				});
+						locations = { locations: coursesearch.locationlist };
+
+						/**
+						 * Handlebars templating
+						 * Build list of locations
+						 */
+						 coursesearch.limithelper();
+						var	locationtemplate = Handlebars.compile( coursesearch.dom.locationsrc.html() );
+						coursesearch.dom.locationcontainer.html( locationtemplate( locations ) );
+
+						googlemaps.addmarkers( results );
+					});
+				}
+				else
+				{
+					coursesearch.error();
+				}
 			},
 			limithelper: function() {
 				Handlebars.registerHelper('each_upto', function( array, max, options ) {
@@ -257,7 +256,7 @@
 		/**
 		 * Initiate Google maps
 		 */
-		googlemaps.init();
+		coursesearch.init();
 		
 		/**
 		 * Check Geolocation Browser Support
