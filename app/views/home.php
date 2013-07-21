@@ -38,6 +38,15 @@
 							<h4><a href="http://maps.google.com//maps?q={{address}}" target="_blank"><strong>{{name}}</strong></a></h4>
 							<p>{{address}}</p>
 							<p><a href="http://maps.google.com//maps?f=d&hl=en&saddr=&daddr={{address}}" target="_blank">Get Directions</a></p>
+							{{#if photos}}
+							<div class="photos clearfix">
+								{{#each_upto photos 3}}
+								<div class="photo">
+									<img id="{{id}}" src="http://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}_s.jpg" alt="{{title}}" />
+								</div>
+								{{/each_upto}}
+							</div>
+							{{/if}}
 						</div>
 						{{/each}}
 					</script>

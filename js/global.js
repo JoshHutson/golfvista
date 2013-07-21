@@ -38,13 +38,19 @@
 							cache: false
 						});
 			},
-			get: function( course ) {
-				this.data.tags = course;
+			get: function( place ) {
+				var dfd = $.Deferred();
+				this.data.tags = place.name;
 				this.ajax( flickr.data ).done( function( data ){
-							console.log(data);
+							var photos = ( typeof data !== 'undefined' && data ) ? data.photos.photo : '';
+							console.log(photos);
+							coursesearch.locationlist.push( { name: place.name, address: place.formatted_address, photos: photos })
+							dfd.resolve();
 						} ).fail( function(){
 							coursesearch.dom.inputcontainer.addClass('error');
 						} );
+
+				return dfd.promise();
 			},
 			sort: function( data ) {
 
@@ -172,6 +178,7 @@
 				locationsrc: $('#ajax-locations'),
 				locationcontainer: $('.course-list-container')
 			},
+			locationlist: [],
 			events: function() {
 				this.dom.form.on('submit', coursesearch.validate);
 				this.dom.button.on('click', coursesearch.validate);
@@ -210,19 +217,35 @@
 				});
 			},
 			buildlist: function( results ) {
-				var location = [];
+				var def = [];
+				coursesearch.locationlist = [];
 				$.each( results, function( key, place ) {
-					location.push( { name: place.name, address: place.formatted_address } );
+					def.push( flickr.get( place ) );
 				});
 				
-				locations = {locations:location};
+				$.when.apply( $, def ).done( function() {
+					console.log(coursesearch.locationlist);
+					locations = { locations: coursesearch.locationlist };
 
-				/**
-				 * Handlebars templating
-				 * Build list of locations
-				 */
-				var	locationtemplate = Handlebars.compile( coursesearch.dom.locationsrc.html() );
-				coursesearch.dom.locationcontainer.html( locationtemplate( locations ) );
+					/**
+					 * Handlebars templating
+					 * Build list of locations
+					 */
+					 coursesearch.limithelper();
+					var	locationtemplate = Handlebars.compile( coursesearch.dom.locationsrc.html() );
+					coursesearch.dom.locationcontainer.html( locationtemplate( locations ) );
+				});
+			},
+			limithelper: function() {
+				Handlebars.registerHelper('each_upto', function( array, max, options ) {
+					if( ! array || array.length == 0 )
+						return options.inverse( this );
+
+					var result = [ ];
+					for( var i = 0; i < max && i < array.length; ++i )
+						result.push( options.fn( array[i] ) );
+					return result.join( '' );
+				});
 			},
 			error: function() {
 				googlemaps.dom.map.html('<p style="text-align:center;">No results found for this address.</p>');
