@@ -22,23 +22,59 @@ html[xmlns] .clearfix {
 .left {
 	float:left;
 }
+
+h1 {
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+	color: #555;
+	border-bottom: 1px solid #EEE;
+}
+
+h1 small {
+	font-size:.4em;
+}
+
+label {
+	color: #FFF;
+}
+
+p {
+	color: #555;
+}
+
+a {
+	color: #00968B;
+}
+
+.input-append input {
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
+}
+
+.input-append .btn {
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
+}
+
 .search-container {
 	width: auto;
 	height: 65px;
 	padding: 10px;
-	background: #eeeeee;
+	background: #00968B;
 
 	font-family:arial,verdana,helvetica, sans-serif;
 	
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-top: 1px solid #D5D5D5;
-	border-left: 1px solid #D5D5D5;
-	border-right: 1px solid #D5D5D5;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	/*border-top: 1px solid #EEE;
+	border-left: 1px solid #EEE;
+	border-right: 1px solid #EEE;*/
 }
 
 .search-container label,
@@ -68,22 +104,21 @@ html[xmlns] .clearfix {
 	margin: 0 0 0 15px;
 }
 
-
 .course-list-container {
 	overflow-y: auto;
 	width:auto;
-	height:405px;
+	height:409px;
 	padding:10px;
 
 	font-size: 14px;
 
-	-webkit-border-bottom-left-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	-moz-border-radius-bottomright: 5px;
-	border-top-bottom-radius: 5px;
-	border-top-bottom-radius: 5px;
-	border: 1px solid #D5D5D5;
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	-moz-border-radius-bottomright: 3px;
+	border-top-bottom-radius: 3px;
+	border-top-bottom-radius: 3px;
+	border: 1px solid #EEE;
 }
 
 .course-list-container h4 {
@@ -94,12 +129,12 @@ html[xmlns] .clearfix {
 
 	padding: 10px 5px 15px 5px;
 	
-	border-bottom: 1px solid #D5D5D5;
+	border-bottom: 1px solid #EEE;
 }
 
 .course-list-container .course-location:hover,
 .course-list-container .course-location.selected {
-	background: #f3fafe;
+	background: #EEE;
 }
 
 .course-list-container .course-location h4 {
@@ -141,11 +176,14 @@ html[xmlns] .clearfix {
 }
 
 .course-list-container::-webkit-scrollbar-thumb {
-	border-radius: 5px;
+	border-radius: 3px;
 	border: 2px solid white; /* should match background, can't be transparent */
 	background-color: rgba(0, 0, 0, .5);
 }
 
+#map_canvas {
+	border: 1px solid #EEE;
+}
 #map_canvas {
 	width:100%;
 	height:514px;
@@ -156,20 +194,28 @@ footer {
 	line-height: 15px;
 	margin: 20px 0;
 	padding: 10px 0;
-	border-top: 1px solid #D5D5D5;
+	border-top: 1px solid #EEE;
 }
 
 @media (max-width: 600px) {
+	h1 {
+		border: none;
+	}
+
+	h1 small {
+		display: block;
+		margin-top: 0;
+		padding: 3px;
+	}
+
 	.search-container {
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-		border: 1px solid #D5D5D5;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
 	}
 
 	.course-list-container {
 		height:auto;
-		
 		border: none;
 	}
 

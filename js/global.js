@@ -4,13 +4,11 @@
 		 * Use Geolocation if allowed
 		 */
 		var geo = {
-			coords: null,
 			init: function() {
 				navigator.geolocation.getCurrentPosition( this.success, this.error );
 			},
 			success: function( position ) {
-				geo.coords = position.coords;
-				googlemaps.call( geo.coords );
+				googlemaps.call( position.coords );
 			},
 			error: function( error ) {
 				googlemaps.handlenogeolocation();
@@ -27,6 +25,7 @@
 				method: 'flickr.photos.search',
 				api_key: '765ec4031c10071ef84dfc6f8d9b2fe9',
 				tags: '',
+				tag_mode: 'all',
 				perPage: '10'
 			},
 			ajax: function( data ) {
@@ -40,7 +39,7 @@
 			},
 			get: function( key, place ) {
 				var dfd = $.Deferred();
-				this.data.tags = place.name;
+				this.data.tags = place.name + ', golf';
 				this.ajax( flickr.data ).done( function( data ){
 							var photos = ( typeof data !== 'undefined' && data ) ? data.photos.photo : '';
 							coursesearch.locationlist.push( { key: key, name: place.name, address: place.formatted_address, photos: photos });
@@ -142,6 +141,7 @@
 			handlenogeolocation: function() {
 			},
 			clearmarkers: function() {
+				coursesearch.dom.locationcontainer.html( '' );
 				for (var i = 0; i < googlemaps.markers.length; i++ ) {
 					googlemaps.markers[i].setMap(null);
 				}
@@ -151,7 +151,7 @@
 		/**
 		 * Golf Course Search
 		 * Build validation and 
-		  *initial search call
+		 * initial search call
 		 */
 		var coursesearch = {
 			dom: {
@@ -254,7 +254,7 @@
 		}
 
 		/**
-		 * Initiate Google maps
+		 * Initiate Search
 		 */
 		coursesearch.init();
 		

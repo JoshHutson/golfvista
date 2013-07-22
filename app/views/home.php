@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<title>Golf Vista</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="description" content="Enter a location to view nearby golf courses.">
+		<meta name="author" content="JoshHutson.com">
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -19,13 +19,13 @@
 	<body>
 
 		<div class="container">
-			<h1>Golf Vista</h1>
-			<p>Enter a location to view nearby golf courses.</p>
+			<h1>Golf Vista <small>View nearby golf courses.</small></h1>
+			<p></p>
 			<div class="row">
 				<div class="span4">
 					<div class="search-container">
 						<form id="course-search-form">
-							<label for="location">Enter Location</label>
+							<label for="location">Enter a location:</label>
 							<div class="input-append control-group input-container">
 								<input type="text" name="location" id="location" class="span2" tabindex="1" />
 								<button type="button" id="search" class="btn" tabindex="2"><span>Search</span></button>
