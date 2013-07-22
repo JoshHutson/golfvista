@@ -1,4 +1,4 @@
 golfvista
 =========
 
-View nearby pictures of golf courses.
+View nearby golf courses.
