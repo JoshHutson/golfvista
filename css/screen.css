@@ -24,10 +24,8 @@ html[xmlns] .clearfix {
 }
 
 h1 {
-	padding-bottom: 10px;
 	margin-bottom: 15px;
 	color: #555;
-	border-bottom: 1px solid #EEE;
 }
 
 h1 small {
@@ -72,9 +70,6 @@ a {
 	-moz-border-radius-topright: 3px;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-	/*border-top: 1px solid #EEE;
-	border-left: 1px solid #EEE;
-	border-right: 1px solid #EEE;*/
 }
 
 .search-container label,
@@ -177,7 +172,7 @@ a {
 
 .course-list-container::-webkit-scrollbar-thumb {
 	border-radius: 3px;
-	border: 2px solid white; /* should match background, can't be transparent */
+	border: 2px solid white;
 	background-color: rgba(0, 0, 0, .5);
 }
 

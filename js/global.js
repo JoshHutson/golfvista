@@ -139,6 +139,7 @@
 				});
 			},
 			handlenogeolocation: function() {
+				googlemaps.clearmarkers();
 			},
 			clearmarkers: function() {
 				coursesearch.dom.locationcontainer.html( '' );
