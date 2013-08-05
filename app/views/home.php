@@ -17,7 +17,6 @@
 	</head>
 
 	<body>
-
 		<div class="container">
 			<h1>Golf Vista <small>View nearby golf courses.</small></h1>
 			<p></p>
@@ -64,10 +63,6 @@
 		</footer>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
-		<?php /*
-		<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyD1bFbIpMttJhAN3hqC4NxOFI6d9Xss3GQ&sensor=true"></script>
-		*/ ?>
-		<script src="js/bootstrap.min.js"></script>
 		<script src="js/handlebars.min.js"></script>
 		<script src="js/global.js"></script>
 	</body>
