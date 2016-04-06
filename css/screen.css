@@ -1,221 +1,221 @@
 .clearfix:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
 }
  
 .clearfix {
-	display: inline-block;
+    display: inline-block;
 }
  
 html[xmlns] .clearfix {
-	display: block;
+    display: block;
 }
  
 * html .clearfix {
-	height: 1%;
+    height: 1%;
 }
 
 .left {
-	float:left;
+    float:left;
 }
 
 h1 {
-	margin-bottom: 15px;
-	color: #555;
+    margin-bottom: 15px;
+    color: #555;
 }
 
 h1 small {
-	font-size:.4em;
+    font-size:.4em;
 }
 
 label {
-	color: #FFF;
+    color: #FFF;
 }
 
 p {
-	color: #555;
+    color: #555;
 }
 
 a {
-	color: #00968B;
+    color: #00968B;
 }
 
 .input-append input {
-	-webkit-border-radius: 3px 0 0 3px;
-	-moz-border-radius: 3px 0 0 3px;
-	border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
 }
 
 .input-append .btn {
-	-webkit-border-radius: 0 3px 3px 0;
-	-moz-border-radius: 0 3px 3px 0;
-	border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
 }
 
 .search-container {
-	width: auto;
-	height: 65px;
-	padding: 10px;
-	background: #00968B;
+    width: auto;
+    height: 65px;
+    padding: 10px;
+    background: #00968B;
 
-	font-family:arial,verdana,helvetica, sans-serif;
-	
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-topright: 3px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
+    font-family:arial,verdana,helvetica, sans-serif;
+    
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 .search-container label,
 .search-container input {
-	display:block;
+    display:block;
 }
 
 .search-container .type-check {
-	clear:both;
-	padding-top: 5px;
+    clear:both;
+    padding-top: 5px;
 }
 
 .search-container .type-check label,
 .search-container .type-check input {
-	display: inline;
+    display: inline;
 }
 
 .search-container .type-check label {
-	padding: 0 2px;
+    padding: 0 2px;
 }
 
 .search-container .type-check input.first {
-	margin: 0;
+    margin: 0;
 }
 
 .search-container .type-check input {
-	margin: 0 0 0 15px;
+    margin: 0 0 0 15px;
 }
 
 .course-list-container {
-	overflow-y: auto;
-	width:auto;
-	height:409px;
-	padding:10px;
+    overflow-y: auto;
+    width:auto;
+    height:409px;
+    padding:10px;
 
-	font-size: 14px;
+    font-size: 14px;
 
-	-webkit-border-bottom-left-radius: 3px;
-	-webkit-border-bottom-right-radius: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-moz-border-radius-bottomright: 3px;
-	border-top-bottom-radius: 3px;
-	border-top-bottom-radius: 3px;
-	border: 1px solid #EEE;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-top-bottom-radius: 3px;
+    border-top-bottom-radius: 3px;
+    border: 1px solid #EEE;
 }
 
 .course-list-container h4 {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .course-list-container .course-location {
 
-	padding: 10px 5px 15px 5px;
-	
-	border-bottom: 1px solid #EEE;
+    padding: 10px 5px 15px 5px;
+    
+    border-bottom: 1px solid #EEE;
 }
 
 .course-list-container .course-location:hover,
 .course-list-container .course-location.selected {
-	background: #EEE;
+    background: #EEE;
 }
 
 .course-list-container .course-location h4 {
-	margin: 0;
-	
-	/* Font */
-	font-weight: bold;
-	color: #444;
+    margin: 0;
+    
+    /* Font */
+    font-weight: bold;
+    color: #444;
 
 }
 
 .course-list-container .course-location h4 small {
-	float:right;
-	margin-left: 5px;
-		
-	/* Font */
-	font-weight: normal;
+    float:right;
+    margin-left: 5px;
+        
+    /* Font */
+    font-weight: normal;
 
 }
 
 .course-list-container .course-location p {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 
 }
 
 .course-list-container .course-location .photos .photo {
-	float: left;
-	margin: 5px 3px;
+    float: left;
+    margin: 5px 3px;
 }
 
 .course-list-container .course-location:last-child {
-	border: none;
-	margin: 0;
+    border: none;
+    margin: 0;
 }
 
 .course-list-container::-webkit-scrollbar {
-	-webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 .course-list-container::-webkit-scrollbar-thumb {
-	border-radius: 3px;
-	border: 2px solid white;
-	background-color: rgba(0, 0, 0, .5);
+    border-radius: 3px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, .5);
 }
 
 #map_canvas {
-	border: 1px solid #EEE;
+    border: 1px solid #EEE;
 }
 #map_canvas {
-	width:100%;
-	height:514px;
+    width:100%;
+    height:514px;
 }
 
 footer {
-	font-size: 12px;
-	line-height: 15px;
-	margin: 20px 0;
-	padding: 10px 0;
-	border-top: 1px solid #EEE;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 20px 0;
+    padding: 10px 0;
+    border-top: 1px solid #EEE;
 }
 
 @media (max-width: 600px) {
-	h1 {
-		border: none;
-	}
+    h1 {
+        border: none;
+    }
 
-	h1 small {
-		display: block;
-		margin-top: 0;
-		padding: 3px;
-	}
+    h1 small {
+        display: block;
+        margin-top: 0;
+        padding: 3px;
+    }
 
-	.search-container {
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
-	}
+    .search-container {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
 
-	.course-list-container {
-		height:auto;
-		border: none;
-	}
+    .course-list-container {
+        height:auto;
+        border: none;
+    }
 
-	.course-list-container .course-location:hover,
-	.course-list-container .course-location.selected {
-		background: none;
-	}
+    .course-list-container .course-location:hover,
+    .course-list-container .course-location.selected {
+        background: none;
+    }
 }
